@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Quest ★ Class Memories</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <div class="lb-close" id="lb-close">✕ CLOSE</div>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-label" id="lb-label"></div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-counter" id="lb-counter"></div>
+  <div class="lb-nav">
+    <button id="lb-prev">◀ PREV</button>
+    <button id="lb-next">NEXT ▶</button>
+  </div>
+</div>
+
+<div class="gameboy">
+  <div class="brand-label">★ FRIENDSHIP QUEST · F1T3 EDITION ★</div>
+  <div class="present-wrap">
+    <div id="present" class="present locked" tabindex="0">🎁</div>
+    <div id="present-progress" class="present-progress">0/6</div>
+  </div>
+
+  <div class="screen-shell">
+    <div class="screen">
+
+      <!-- TITLE -->
+      <div id="title-screen" class="screen-content active">
+        <div class="title-inner">
+          <div class="title-stars" id="title-stars"></div>
+          <div class="game-title">FRIENDSHIP<br>QUEST</div>
+          <div class="game-subtitle">CLASS OF 2025/2026 ★</div>
+          <div class="press-start">▶ PRESS START ◀</div>
+          <ul class="menu" id="main-menu">
+            <li class="menu-item selected" data-target="memories">📖 MEMORIES</li>
+            <li class="menu-item" data-target="thank-you">💌 THANK YOU</li>
+            <li class="menu-item" data-target="game">🎮 MINI GAME</li>
+            <li class="menu-item" data-target="honesty">💬 HONESTY BOX</li>
+            <li class="menu-item" data-target="future">🌟 FUTURE WISHES</li>
+            <li class="menu-item" data-target="photos">📸 PHOTO ALBUM</li>
+            <li class="menu-item" data-target="constellation">✨ SECRET: F1T3</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MEMORIES -->
+      <div id="memories" class="screen-content">
+        <div class="scrollable">
+          <button class="back-btn" onclick="goBack()">◀ BACK</button>
+          <div class="section-header">📖 OUR STORY</div>
+          <div class="memory-card">
+            <div class="memory-card-title">⭐ FRESHMAN YEAR</div>
+            <div class="memory-card-text">Those awkward first-day introductions that none of us knew would become the start of something unforgettable.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🌙 LATE NIGHT MAGGI & TEARS</div>
+            <div class="memory-card-text">2AM study sessions, stress, instant noodles, and somehow laughing through it all. We survived together.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🏆 AEROBICS FEST</div>
+            <div class="memory-card-text">Blue & pink uniforms, glitter, pom-poms. We trained hard, performed harder, and celebrated the loudest.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🎡 MELAKA STAYCATION NIGHTS </div>
+            <div class="memory-card-text">Carnival lights, night market energy, the whole squad free and together. Nights we'll always talk about.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🕌 RAYA SEASON</div>
+            <div class="memory-card-text">Traditional outfits, open house visits  felt like a whole other kind of family.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🔬 LAB DAYS IN WHITE COATS</div>
+            <div class="memory-card-text">White coats, safety goggles, and big smiles. Science was never boring when we were in it together.</div>
+          </div>
+          <div class="memory-card">
+            <div class="memory-card-title">🌅 THE SUNSET ROAD PHOTO</div>
+            <div class="memory-card-text">Sitting on the road at sunset, one last group photo — we didn't want it to end. What an adventure.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THANK YOU -->
+      <div id="thank-you" class="screen-content">
+        <div class="scrollable">
+          <button class="back-btn" onclick="goBack()">◀ BACK</button>
+          <div class="section-header">💌 FROM THE HEART</div>
+          <div class="thank-msg">Thank you for being there through every breakdown and breakthrough.</div>
+          <div class="thank-msg">Terima kasih untuk setiap gelak-tawa bersama yang menjadikan hari-hari yang berat menjadi ringan.</div>
+          <div class="thank-msg">Terima kasih kerana menerima aku seadanya dengan semua kepelikkan dan kekuranganku.</div>
+          <div class="thank-msg">Terima kasih atas setiap kenangan yang diberi.Aku akan sentiasa mengigatinya dan simpan di ruangan special di hati.</div>
+          <div class="thank-msg">Aku sangat bersyukur untuk setiap gambar kita sekelas bersama dan kenangan outing kita sekelas.</div>
+          <div class="thank-msg">Walaupun kita akan pergi ke arah yang berbeza selepas ini persahabatan ini akan sentiasa kekal terukir dalam ingatan dan hati aku.</div>
+          <div class="thank-msg">Korg mejadikan kolej ni berasa seperti di rumah. Semua itu amat bermakna untuk aku.</div>
+        </div>
+      </div>
+
+      <!-- GAME -->
+      <div id="game" class="screen-content">
+        <div class="game-area" id="game-area">
+          <div class="player" id="player"></div>
+          <div class="goal" id="goal"></div>
+          <div id="game-message">REACH THE ★ GOAL!</div>
+          <div class="score">PTS: <span id="score">0</span></div>
+        </div>
+      </div>
+
+      <!-- HONESTY -->
+      <div id="honesty" class="screen-content">
+        <div class="scrollable">
+          <button class="back-btn" onclick="goBack()">◀ BACK</button>
+          <div class="section-header">💬 REAL TALK</div>
+          <div class="honesty-box">
+            <label>YOUR ANONYMOUS MESSAGE:</label>
+            <textarea id="honesty-input" placeholder="Tulis apa yang kamu rasa... (tanpa nama)"></textarea>
+            <button id="save-honesty">💾 SEND</button>
+          </div>
+          <div class="section-header" style="margin-top:10px;">📬 ALL MESSAGES</div>
+          <div id="honesty-messages-list" style="margin-top:4px;">
+            <div style="font-size:6px;color:rgba(74,222,128,0.5);font-family:var(--text-mono);">Loading messages...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUTURE -->
+      <div id="future" class="screen-content">
+        <div class="scrollable">
+          <button class="back-btn" onclick="goBack()">◀ BACK</button>
+          <div class="section-header">🌟 WISHES FOR YOU</div>
+          <div class="wish-item"><span class="wish-icon">🌸</span><div class="wish-text">Semoga setiap impian korg tercapai dan semoga kebahagiaan sentiasa menemani setiap jalan yang korg lalui.</div></div>
+          <div class="wish-item"><span class="wish-icon">🛤️</span><div class="wish-text">Semoga jalan kita bertemu lagi suatu hari nanti  dan tidak menjadi asing suatu hari nanti.</div></div>
+          <div class="wish-item"><span class="wish-icon">💼</span><div class="wish-text">Semoga berjaya korg dalam kerjaya, bahagia dalam kehidupan dan mencapai setiap matlamat yang korg punyai.</div></div>
+          <div class="wish-item"><span class="wish-icon">📡</span><div class="wish-text">Tak kisah seberapa jauh jarak kita dipisahkan,korg sentiasa menjadi rakan sekelas aku yang terbaik.</div></div>
+          <div class="wish-item"><span class="wish-icon">🤝</span><div class="wish-text">Mari kita berjanji untuk kekal berhubung dan terus menyokong satu sama lain, selamanya.</div></div>
+          <div class="wish-item"><span class="wish-icon">✨</span><div class="wish-text">Terima kasih sekali lagi untuk semua kenangan yang telah kita cipta dan semoga kita kekal menjadi rapat bagaikan sebuah keluarga!</div></div>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div id="photos" class="screen-content">
+        <div class="scrollable">
+          <button class="back-btn" onclick="goBack()">◀ BACK</button>
+          <div class="section-header">📸 PHOTO ALBUM</div>
+          <div class="photo-grid" id="photo-grid"></div>
+        </div>
+      </div>
+
+      <!-- CONSTELLATION / SECRET F1T3 -->
+      <div id="constellation" class="screen-content">
+        <div style="position:relative;width:100%;height:100%;background:#050510;overflow:hidden;">
+          <canvas id="stardust-lines" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
+          <div id="stars-wrapper" style="position:absolute;width:100%;height:100%;z-index:2;"></div>
+          <div id="const-back" style="position:absolute;top:8px;left:10px;z-index:10;">
+            <button class="back-btn" onclick="goBack()" style="border-color:rgba(96,165,250,0.4);color:rgba(96,165,250,0.7);">◀ BACK</button>
+          </div>
+          <div id="const-hint" style="position:absolute;top:8px;left:0;right:0;text-align:center;font-size:5px;color:rgba(96,165,250,0.6);z-index:5;padding-top:2px;">TAP ALL STARS TO REVEAL F1T3</div>
+          <div id="final-message" style="position:absolute;bottom:14%;left:50%;transform:translateX(-50%);color:#45a29e;text-align:center;z-index:3;opacity:0;pointer-events:none;transition:opacity 4s ease-in-out;text-shadow:0 0 15px #66fcf1;width:90%;">
+            <p style="font-size:7px;line-height:1.8;">"Mungkin di kehidupan lain,<br>kita akan jadi F1T3 lagi 🥲"</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="controls-section">
+    <div class="d-pad">
+      <div class="d-pad-center"></div>
+      <div class="d-pad-btn" id="up">▲</div>
+      <div class="d-pad-btn" id="down">▼</div>
+      <div class="d-pad-btn" id="left">◀</div>
+      <div class="d-pad-btn" id="right">▶</div>
+    </div>
+    <div class="mid-buttons">
+      <div class="start-select">
+        <button class="sys-btn" id="select">SEL</button>
+        <button class="sys-btn" id="start">START</button>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <div class="action-row">
+        <button class="action-btn" id="b-button">B</button>
+        <button class="action-btn" id="a-button">A</button>
+      </div>
+      <div class="btn-labels"><span>BACK &nbsp;&nbsp;</span><span>ACTION</span></div>
+    </div>
+  </div>
+
+  <div class="footer">★ FRIENDSHIP QUEST · CLASS OF 2025/2026 ★</div>
+  <button id="reset-present" class="reset-present">↺ RESET</button>
+</div>
+
+<div id="present-overlay" class="present-overlay hidden">
+  <button id="present-close" class="present-close">✕ CLOSE</button>
+  <div id="flower-container" class="not-loaded">
+    <header class="flower-header">
+      <h1 class="flower-title">Mungkin di kehidupan lain, kita akan jadi F1T3 lagi🥲.<br>Terima kasih atas semua kenangan indah ini. Semoga berjaya dalam kehidupan masing-masing. Jangan lupa satu sama lain selepas matrik.</h1>
+    </header>
+
+        <div class="night"></div>
+        <div class="flowers">
+          <div class="flower flower--1">
+            <div class="flower__leafs flower__leafs--1">
+              <div class="flower__leaf flower__leaf--1"></div>
+              <div class="flower__leaf flower__leaf--2"></div>
+              <div class="flower__leaf flower__leaf--3"></div>
+              <div class="flower__leaf flower__leaf--4"></div>
+              
+
+              <div class="flower__white-circle"></div>
+      
+              <div class="flower__light flower__light--1"></div>
+              <div class="flower__light flower__light--2"></div>
+              <div class="flower__light flower__light--3"></div>
+              <div class="flower__light flower__light--4"></div>
+              <div class="flower__light flower__light--5"></div>
+              <div class="flower__light flower__light--6"></div>
+              <div class="flower__light flower__light--7"></div>
+              <div class="flower__light flower__light--8"></div>
+      
+            </div>
+            <div class="flower__line">
+              <div class="flower__line__leaf flower__line__leaf--1"></div>
+              <div class="flower__line__leaf flower__line__leaf--2"></div>
+              <div class="flower__line__leaf flower__line__leaf--3"></div>
+              <div class="flower__line__leaf flower__line__leaf--4"></div>
+              <div class="flower__line__leaf flower__line__leaf--5"></div>
+              <div class="flower__line__leaf flower__line__leaf--6"></div>
+            </div>
+          </div>
+      
+          <div class="flower flower--2">
+            <div class="flower__leafs flower__leafs--2">
+              <div class="flower__leaf flower__leaf--1"></div>
+              <div class="flower__leaf flower__leaf--2"></div>
+              <div class="flower__leaf flower__leaf--3"></div>
+              <div class="flower__leaf flower__leaf--4"></div>
+              <div class="flower__white-circle"></div>
+      
+              <div class="flower__light flower__light--1"></div>
+              <div class="flower__light flower__light--2"></div>
+              <div class="flower__light flower__light--3"></div>
+              <div class="flower__light flower__light--4"></div>
+              <div class="flower__light flower__light--5"></div>
+              <div class="flower__light flower__light--6"></div>
+              <div class="flower__light flower__light--7"></div>
+              <div class="flower__light flower__light--8"></div>
+      
+            </div>
+            <div class="flower__line">
+              <div class="flower__line__leaf flower__line__leaf--1"></div>
+              <div class="flower__line__leaf flower__line__leaf--2"></div>
+              <div class="flower__line__leaf flower__line__leaf--3"></div>
+              <div class="flower__line__leaf flower__line__leaf--4"></div>
+            </div>
+          </div>
+      
+          <div class="flower flower--3">
+            <div class="flower__leafs flower__leafs--3">
+              <div class="flower__leaf flower__leaf--1"></div>
+              <div class="flower__leaf flower__leaf--2"></div>
+              <div class="flower__leaf flower__leaf--3"></div>
+              <div class="flower__leaf flower__leaf--4"></div>
+              <div class="flower__white-circle"></div>
+      
+              <div class="flower__light flower__light--1"></div>
+              <div class="flower__light flower__light--2"></div>
+              <div class="flower__light flower__light--3"></div>
+              <div class="flower__light flower__light--4"></div>
+              <div class="flower__light flower__light--5"></div>
+              <div class="flower__light flower__light--6"></div>
+              <div class="flower__light flower__light--7"></div>
+              <div class="flower__light flower__light--8"></div>
+      
+            </div>
+            <div class="flower__line">
+              <div class="flower__line__leaf flower__line__leaf--1"></div>
+              <div class="flower__line__leaf flower__line__leaf--2"></div>
+              <div class="flower__line__leaf flower__line__leaf--3"></div>
+              <div class="flower__line__leaf flower__line__leaf--4"></div>
+            </div>
+          </div>
+      
+          <div class="grow-ans" style="--d:1.2s">
+            <div class="flower__g-long">
+              <div class="flower__g-long__top"></div>
+              <div class="flower__g-long__bottom"></div>
+            </div>
+          </div>
+      
+          <div class="growing-grass">
+            <div class="flower__grass flower__grass--1">
+              <div class="flower__grass--top"></div>
+              <div class="flower__grass--bottom"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+              <div class="flower__grass__overlay"></div>
+            </div>
+          </div>
+      
+          <div class="growing-grass">
+            <div class="flower__grass flower__grass--2">
+              <div class="flower__grass--top"></div>
+              <div class="flower__grass--bottom"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--5"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--6"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--7"></div>
+              <div class="flower__grass__leaf flower__grass__leaf--8"></div>
+              <div class="flower__grass__overlay"></div>
+            </div>
+          </div>
+      
+          <div class="grow-ans" style="--d:2.4s">
+            <div class="flower__g-right flower__g-right--1">
+              <div class="leaf"></div>
+            </div>
+          </div>
+      
+          <div class="grow-ans" style="--d:2.8s">
+            <div class="flower__g-right flower__g-right--2">
+              <div class="leaf"></div>
+            </div>
+          </div>
+      
+          <div class="grow-ans" style="--d:2.8s">
+            <div class="flower__g-front">
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--1">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--2">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--3">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--4">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--5">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--6">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--7">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__leaf-wrapper flower__g-front__leaf-wrapper--8">
+                <div class="flower__g-front__leaf"></div>
+              </div>
+              <div class="flower__g-front__line"></div>
+            </div>
+          </div>
+      
+          <div class="grow-ans" style="--d:3.2s">
+            <div class="flower__g-fr">
+              <div class="leaf"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--1"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--2"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--3"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--4"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--5"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--6"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--7"></div>
+              <div class="flower__g-fr__leaf flower__g-fr__leaf--8"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--0">
+            <div class="grow-ans" style="--d:3s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:2.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.4s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--1">
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.8s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:4s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--2">
+            <div class="grow-ans" style="--d:4s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.4s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--3">
+            <div class="grow-ans" style="--d:4s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:3s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--4">
+            <div class="grow-ans" style="--d:4s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:3s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--5">
+            <div class="grow-ans" style="--d:4s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:3s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--6">
+            <div class="grow-ans" style="--d:4.2s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.4s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.6s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:4.8s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+      
+          <div class="long-g long-g--7">
+            <div class="grow-ans" style="--d:3s">
+              <div class="leaf leaf--0"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.2s">
+              <div class="leaf leaf--1"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.5s">
+              <div class="leaf leaf--2"></div>
+            </div>
+            <div class="grow-ans" style="--d:3.6s">
+              <div class="leaf leaf--3"></div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div id="present-live" class="sr-only" aria-live="polite"></div>
+
+<!-- Background Music -->
+<audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+<!-- Music Toggle Button -->
+<button id="music-toggle" title="Toggle Music" aria-label="Toggle background music">🎵</button>
+
+<script src="script.js"></script>
+</body></html>
